@@ -1,0 +1,80 @@
+seed: 42
+sheet_name: 0
+shots: 5
+request_delay_seconds: 0.5
+
+column_aliases:
+  id:
+    - IDX
+    - id
+    - ID
+  term:
+    - 신어
+    - 표제어
+    - 등재표제어
+    - term
+    - 정답 (표제어)
+    - 정답(표제어)
+  gold:
+    - 형태소_분석
+    - 형태소 분석
+    - 정답(구성 요소 분석)
+    - 정답 (구성 요소 분석)
+    - 정답
+    - gold_components
+  year:
+    - 수집 연도
+    - 최초 출현 연도
+    - 조사연도
+    - 연도
+  word_group:
+    - 단어 형성법
+    - 단어형성법
+
+# These overrides reproduce the execution routes used in the Task 2 notebooks.
+# The global model aliases and model IDs remain in configs/models.yaml.
+backend_overrides:
+  gpt-4.1:
+    provider: openai_chat
+    max_new_tokens: 2048
+    temperature: 0.0
+    token_parameter: max_tokens
+
+  gpt-5.4:
+    provider: openai_chat
+    max_new_tokens: 2048
+    temperature: 0.0
+    token_parameter: max_completion_tokens
+
+  solar-pro3:
+    provider: upstage_chat
+    max_new_tokens: 2048
+
+  solar-10.7b-instruct:
+    provider: huggingface_chat
+    base_url: https://router.huggingface.co/v1
+    max_new_tokens: 2048
+
+  qwen2.5-7b-instruct:
+    provider: huggingface_chat
+    base_url: https://router.huggingface.co/v1
+    max_new_tokens: 2048
+
+  qwen3.5-9b:
+    provider: huggingface_chat
+    base_url: https://router.huggingface.co/v1
+    max_new_tokens: 2048
+    disable_thinking: true
+
+  llama-3.1-8b-instruct:
+    provider: huggingface_chat
+    base_url: https://router.huggingface.co/v1
+    max_new_tokens: 2048
+
+  exaone-3.5-7.8b-instruct:
+    provider: transformers
+    max_new_tokens: 256
+
+  exaone-4.0-32b:
+    provider: transformers
+    max_new_tokens: 256

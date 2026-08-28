@@ -1,0 +1,35 @@
+seed: 42
+temperature: 0.0
+sheet_name: 0
+condition: particle_included
+
+column_aliases:
+  id:
+    - IDX
+    - id
+    - ID
+  question:
+    - 용례 (표제어 [MASK])
+    - 용례(표제어 [MASK])
+    - 용례 (표제어[MASK])
+    - 용례(표제어[MASK])
+    - 용례
+  answer:
+    - 정답 (표제어)
+    - 정답(표제어)
+    - 정답
+  confusion:
+    - 혼동오답
+    - 혼동 오답
+    - 혼동 오답(작업 열)
+  random_1:
+    - 무작위 오답 1
+  random_2:
+    - 무작위 오답 2
+  random_3:
+    - 무작위 오답 3
+  year:
+    - 수집 연도
+    - 최초 출현 연도
+    - 조사연도
+    - 연도

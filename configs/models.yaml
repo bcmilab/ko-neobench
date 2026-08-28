@@ -1,0 +1,60 @@
+models:
+  gpt-4.1:
+    provider: openai_responses
+    model_id: gpt-4.1
+    max_new_tokens: 16
+
+  gpt-5.4:
+    provider: openai_responses
+    model_id: gpt-5.4
+    max_new_tokens: 16
+    temperature: 0.0
+
+  solar-pro3:
+    provider: upstage_chat
+    model_id: solar-pro3
+    base_url: https://api.upstage.ai/v1
+    max_new_tokens: 30
+
+  solar-10.7b-instruct:
+    provider: transformers
+    model_id: upstage/SOLAR-10.7B-Instruct-v1.0
+    max_new_tokens: 8
+    torch_dtype: float16
+    trust_remote_code: true
+
+  exaone-3.5-7.8b-instruct:
+    provider: transformers
+    model_id: LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct
+    max_new_tokens: 16
+    torch_dtype: bfloat16
+    trust_remote_code: true
+
+  exaone-4.0-32b:
+    provider: transformers
+    model_id: LGAI-EXAONE/EXAONE-4.0-32B
+    max_new_tokens: 8
+    torch_dtype: bfloat16
+    trust_remote_code: false
+
+  qwen2.5-7b-instruct:
+    provider: transformers
+    model_id: Qwen/Qwen2.5-7B-Instruct
+    max_new_tokens: 16
+    torch_dtype: auto
+    trust_remote_code: true
+
+  qwen3.5-9b:
+    provider: transformers
+    model_id: Qwen/Qwen3.5-9B
+    max_new_tokens: 16
+    torch_dtype: auto
+    trust_remote_code: true
+    disable_thinking: true
+
+  llama-3.1-8b-instruct:
+    provider: transformers
+    model_id: meta-llama/Llama-3.1-8B-Instruct
+    max_new_tokens: 16
+    torch_dtype: float16
+    trust_remote_code: true

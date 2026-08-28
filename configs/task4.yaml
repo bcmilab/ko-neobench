@@ -1,0 +1,142 @@
+sheet_name: 0
+request_delay_seconds: 0.2
+
+conditions:
+  term_only:
+    default_input: data/task4/Task4_without_ex.csv
+  term_example:
+    default_input: data/task4/Task4_with_ex.csv
+
+column_aliases:
+  id:
+    - IDX
+    - id
+    - ID
+  term:
+    - 정답 (표제어)
+    - 정답(표제어)
+    - 표제어
+    - 등재표제어
+    - term
+    - 색인표제어
+  example:
+    - 용례 (표제어 [MASK])
+    - 용례(표제어 [MASK])
+    - 용례 (표제어[MASK])
+    - 용례(표제어[MASK])
+    - 용례
+    - 예문
+    - example
+  gold:
+    - 뜻풀이
+    - 정의
+    - gold
+  year:
+    - 수집 연도
+    - 최초 출현 연도
+    - 조사연도
+    - 연도
+    - year
+  word_group:
+    - 단어 형성법
+    - 단어형성법
+
+# Task 4 implementations included only when an uploaded notebook provided the route.
+supported_models:
+  - gpt-4.1
+  - gpt-5.4
+  - solar-pro3
+  - solar-10.7b-instruct
+  - exaone-3.5-7.8b-instruct
+  - exaone-4.0-32b
+  - qwen2.5-7b-instruct
+  - qwen3.5-9b
+  - llama-3.1-8b-instruct
+
+backend_overrides:
+  gpt-4.1:
+    provider: openai_structured
+    api_key_env: OPENAI_API_KEY
+    temperature: 1.0
+    max_retries: 4
+    replace_mask: true
+
+  gpt-5.4:
+    provider: openai_structured
+    api_key_env: OPENAI_API_KEY
+    temperature: 1.0
+    max_retries: 4
+    replace_mask: true
+
+  solar-pro3:
+    provider: upstage_structured
+    api_key_env: UPSTAGE_API_KEY
+    base_url: https://api.upstage.ai/v1
+    temperature: 0.2
+    max_tokens: 256
+    max_retries: 5
+    replace_mask: true
+
+  solar-10.7b-instruct:
+    provider: transformers_definition
+    max_new_tokens: 256
+    torch_dtype: float16
+    trust_remote_code: false
+    load_in_4bit: true
+    replace_mask: true
+
+  exaone-3.5-7.8b-instruct:
+    provider: transformers_definition
+    max_new_tokens: 192
+    torch_dtype: bfloat16
+    trust_remote_code: true
+    attn_implementation: eager
+    load_in_4bit: false
+    append_json_instruction: true
+    forbid_scripts: false
+    replace_mask: true
+
+  exaone-4.0-32b:
+    provider: transformers_definition
+    max_new_tokens: 2048
+    torch_dtype: bfloat16
+    trust_remote_code: false
+    load_in_4bit: false
+    append_json_instruction: true
+    forbid_scripts: false
+    replace_mask: true
+
+  qwen2.5-7b-instruct:
+    provider: transformers_definition
+    max_new_tokens: 192
+    torch_dtype: bfloat16
+    trust_remote_code: false
+    attn_implementation: sdpa
+    load_in_4bit: false
+    forbid_scripts: true
+    enable_token_ban: true
+    replace_mask: true
+
+  qwen3.5-9b:
+    provider: transformers_definition
+    max_new_tokens: 192
+    torch_dtype: bfloat16
+    trust_remote_code: false
+    attn_implementation: sdpa
+    load_in_4bit: true
+    forbid_scripts: true
+    enable_token_ban: true
+    disable_thinking: true
+    replace_mask: true
+
+  llama-3.1-8b-instruct:
+    provider: transformers_definition
+    max_new_tokens: 192
+    torch_dtype: bfloat16
+    trust_remote_code: false
+    attn_implementation: sdpa
+    load_in_4bit: true
+    forbid_scripts: true
+    enable_token_ban: true
+    llama_eos_tokens: true
+    replace_mask: true

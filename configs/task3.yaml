@@ -1,0 +1,190 @@
+seed: 42
+sheet_name: 0
+request_delay_seconds: 0.2
+
+# Task 3 uses one script with two axes:
+#   --type type1|type2
+#   --category semantic|special
+# "special" is the repository name for the 전문 분야 task.
+
+type1:
+  semantic:
+    implemented: true
+    default_input: data/task3/task3_type1_semantic.xlsx
+    column_aliases:
+      id:
+        - id
+        - ID
+        - IDX
+        - source_index
+      answer:
+        - answer
+        - 정답
+      target_term:
+        - target_term
+        - answer_term
+        - 정답(표제어)
+        - 정답 (표제어)
+      target_label:
+        - target_category
+        - 의미범주
+        - 의미 범주
+      distractor_label:
+        - distractor_category
+        - 혼동오답범주
+        - 혼동 오답 범주
+      question:
+        - question
+        - 문항
+      year:
+        - 수집 연도
+        - 최초 출현 연도
+        - 조사연도
+        - 연도
+      option_A: [option_A, A]
+      option_B: [option_B, B]
+      option_C: [option_C, C]
+      option_D: [option_D, D]
+      option_E: [option_E, E]
+
+  special:
+    implemented: true
+    default_input: data/task3/task3_type1_special.xlsx
+    column_aliases:
+      id:
+        - id
+        - ID
+        - IDX
+        - source_index
+      answer:
+        - answer
+        - 정답
+      target_term:
+        - target_term
+        - answer_term
+        - 정답(표제어)
+        - 정답 (표제어)
+      target_label:
+        - target_domain
+        - 전문 분야
+        - 전문분야
+      distractor_label:
+        - distractor_domain
+        - 혼동오답전문분야
+        - 혼동 오답 전문 분야
+      question:
+        - question
+        - 문항
+      year:
+        - 수집 연도
+        - 최초 출현 연도
+        - 조사연도
+        - 연도
+      option_A: [option_A, A]
+      option_B: [option_B, B]
+      option_C: [option_C, C]
+      option_D: [option_D, D]
+      option_E: [option_E, E]
+
+type2:
+  semantic:
+    implemented: true
+    default_input: data/task3/task3_type2_semantic.xlsx
+    # The uploaded scripts read the second Excel worksheet.
+    sheet_name: 0
+    default_context: term_only
+    expected_label_count: 16
+    backend_defaults:
+      max_new_tokens: 10
+      temperature: 0.0
+    column_aliases:
+      id: [id, ID, IDX, source_index]
+      headword: [색인표제어, 표제어, 정답, headword, term]
+      label: [의미 범주, 의미범주, semantic_category, category]
+      example: ["용례 (표제어 [MASK])", "용례(표제어 [MASK])", 용례, example]
+      year: [수집 연도, 최초 출현 연도, 조사연도, 연도]
+
+  special:
+    implemented: true
+    default_input: data/task3/task3_type2_special.xlsx
+    # The uploaded scripts read the second Excel worksheet.
+    sheet_name: 0
+    default_context: term_only
+    expected_label_count: 43
+    backend_defaults:
+      max_new_tokens: 10
+      temperature: 0.0
+    column_aliases:
+      id: [id, ID, IDX, source_index]
+      headword: [색인표제어, 표제어, 정답, headword, term]
+      label: [전문 분야, 전문분야, special_domain, domain]
+      example: ["용례 (표제어 [MASK])", "용례(표제어 [MASK])", 용례, example]
+      year: [수집 연도, 최초 출현 연도, 조사연도, 연도]
+
+# Task-specific routes reconstructed from the Type 1 notebooks.
+# All local checkpoints were loaded in 4-bit NF4 in those notebooks.
+backend_overrides:
+  gpt-4.1:
+    provider: openai_chat
+    max_new_tokens: 256
+    temperature: 0.0
+    token_parameter: max_completion_tokens
+
+  gpt-5.4:
+    provider: openai_chat
+    max_new_tokens: 256
+    temperature: 0.0
+    token_parameter: max_completion_tokens
+
+  solar-pro3:
+    provider: upstage_chat
+    max_new_tokens: 256
+
+  solar-10.7b-instruct:
+    provider: transformers
+    max_new_tokens: 256
+    max_input_tokens: 4096
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_use_double_quant: true
+
+  exaone-3.5-7.8b-instruct:
+    provider: transformers
+    max_new_tokens: 256
+    max_input_tokens: 4096
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_use_double_quant: true
+
+  exaone-4.0-32b:
+    provider: transformers
+    max_new_tokens: 256
+    max_input_tokens: 4096
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_use_double_quant: true
+
+  qwen2.5-7b-instruct:
+    provider: transformers
+    max_new_tokens: 256
+    max_input_tokens: 4096
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_use_double_quant: true
+
+  qwen3.5-9b:
+    provider: transformers
+    max_new_tokens: 256
+    max_input_tokens: 4096
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_use_double_quant: true
+    disable_thinking: true
+
+  llama-3.1-8b-instruct:
+    provider: transformers
+    max_new_tokens: 256
+    max_input_tokens: 4096
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_use_double_quant: true

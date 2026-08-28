@@ -1,0 +1,20 @@
+system: |-
+  당신은 신중한 객관식 문제 풀이 모델입니다.
+  한국어 문장을 읽고 [MASK]에 가장 적절한 하나의 표제어를 고르십시오.
+  A, B, C, D, E 중 하나의 대문자만 출력하십시오.
+  선택 이유를 설명하지 마십시오.
+
+user: |-
+  Question (용례):
+  {question}
+
+  Options:
+  A. {option_A}
+  B. {option_B}
+  C. {option_C}
+  D. {option_D}
+  E. {option_E}
+
+  A, B, C, D, E 중 하나의 글자만 답하십시오.
+
+  Answer:

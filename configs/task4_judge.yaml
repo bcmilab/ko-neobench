@@ -1,0 +1,54 @@
+sheet_name: 0
+
+rubric:
+  name: "6-3-1"
+  version: "1.0"
+
+judge:
+  model: gemini-2.5-flash
+  api_key_env: GEMINI_API_KEY
+  temperature: 0.0
+  thinking_budget: 1024
+  max_output_tokens: 4096
+  api_retries: 4
+  request_delay_seconds: 0.2
+
+column_aliases:
+  id:
+    - IDX
+    - item_id
+    - id
+    - ID
+  term:
+    - 정답 (표제어)
+    - 정답(표제어)
+    - 표제어
+    - 등재표제어
+    - 신어
+    - term
+  gold_definition:
+    - 뜻풀이
+    - 뜻 풀이
+    - 정의
+    - 의미
+    - 설명
+    - 풀이
+    - gold
+  example:
+    - 용례 (표제어 [MASK])
+    - 용례(표제어 [MASK])
+    - 용례
+    - 용례1
+    - 예문
+    - 문장
+    - example
+    - context
+  prediction_id:
+    - id
+    - item_id
+    - IDX
+  prediction_row_index:
+    - row_index
+  prediction_definition:
+    - definition
+    - pred_definition

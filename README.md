@@ -1,6 +1,6 @@
-# K-NeoBench
+# KoNeoBench
 
-K-NeoBench is a benchmark for evaluating how well large language models understand Korean neologisms. This repository contains task-level command-line scripts reconstructed from the original experiment notebooks.
+KoNeoBench is a benchmark for evaluating how well large language models understand Korean neologisms. This repository contains task-level command-line scripts reconstructed from the original experiment notebooks.
 
 The repository currently supports:
 
@@ -19,7 +19,7 @@ The repository currently supports:
 ## 1. Repository structure
 
 ```text
-K-NeoBench/
+Ko-NeoBench/
 ├── README.md
 ├── requirements.txt
 ├── .env.example
@@ -603,7 +603,7 @@ Citation information will be added after the anonymous review period.
 
 ```bibtex
 @inproceedings{anonymous2026kneobench,
-  title     = {K-NeoBench: A Curated Evaluation Dataset for LLM Understanding of Korean Neologisms},
+  title     = {KoNeoBench: A Curated Evaluation Dataset for \\ LLM Understanding of Korean Neologisms},
   author    = {Anonymous},
   year      = {2026}
 }

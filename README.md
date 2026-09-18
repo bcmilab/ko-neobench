@@ -19,7 +19,7 @@ The repository currently supports:
 ## 1. Repository structure
 
 ```text
-Ko-NeoBench/
+KoNeoBench/
 ├── README.md
 ├── requirements.txt
 ├── .env.example
@@ -602,9 +602,9 @@ For the Task 4 judge:
 Citation information will be added after the anonymous review period.
 
 ```bibtex
-@inproceedings{anonymous2026kneobench,
-  title     = {KoNeoBench: A Curated Evaluation Dataset for \\ LLM Understanding of Korean Neologisms},
-  author    = {Anonymous},
-  year      = {2026}
-}
+@inproceedings{koneobench2026, 
+  title = {{KoNeoBench}: A Curated Evaluation Dataset for LLM Understanding of Korean Neologisms}, 
+  author = {Lee, Soha and Lee, Soojin and Yang, Heesung and Song, Hyunju and Lee, Hyunji and An, Jinsan and Shin, Jeongwan and Park, Jin Hyun and Lee, Jun and Park, Hyeyoung and Nam, Kilim}, 
+  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2026}, 
+  year = {2026} }
 ```

@@ -1,0 +1,90 @@
+{
+  "source_pdf": "2609.19916v1(1).pdf",
+  "coordinate_system": "PDF points (1/72 inch), origin at top-left",
+  "page_numbering": "1-based",
+  "render_scale": 6,
+  "figures": [
+    {
+      "name": "figure-2",
+      "files": [
+        "figure-2.png",
+        "figure-2.webp"
+      ],
+      "page": 3,
+      "crop_bounds": [
+        320,
+        70,
+        508,
+        393
+      ],
+      "width": 1128,
+      "height": 1938,
+      "png_bytes": 324063,
+      "webp_bytes": 170864,
+      "caption_included": false,
+      "content_changes": "None; direct PDF crop rendered at 432 dpi and losslessly encoded."
+    },
+    {
+      "name": "figure-3",
+      "files": [
+        "figure-3.png",
+        "figure-3.webp"
+      ],
+      "page": 4,
+      "crop_bounds": [
+        72,
+        70,
+        522,
+        174
+      ],
+      "width": 2700,
+      "height": 624,
+      "png_bytes": 217490,
+      "webp_bytes": 108272,
+      "caption_included": false,
+      "content_changes": "None; direct PDF crop rendered at 432 dpi and losslessly encoded."
+    },
+    {
+      "name": "figure-4",
+      "files": [
+        "figure-4.png",
+        "figure-4.webp"
+      ],
+      "page": 5,
+      "crop_bounds": [
+        70,
+        70,
+        526,
+        236
+      ],
+      "width": 2736,
+      "height": 996,
+      "png_bytes": 384487,
+      "webp_bytes": 184246,
+      "caption_included": false,
+      "content_changes": "None; direct PDF crop rendered at 432 dpi and losslessly encoded."
+    },
+    {
+      "name": "figure-6b",
+      "files": [
+        "figure-6b.png",
+        "figure-6b.webp"
+      ],
+      "page": 8,
+      "crop_bounds": [
+        309,
+        203.5,
+        521,
+        343
+      ],
+      "width": 1272,
+      "height": 837,
+      "png_bytes": 166755,
+      "webp_bytes": 103026,
+      "caption_included": false,
+      "content_changes": "None; direct PDF crop rendered at 432 dpi and losslessly encoded.",
+      "note": "Crop starts below panel label (b) because Figure 6(a) Release Date captions share the same horizontal band. All Figure 6(b) axes, years, titles, lines and values are included."
+    }
+  ],
+  "source_sha256": "2e5967bdb3ff4974f595ef0ec310ea155f4102ad6a4c6209b9f4f75f9baff4e7"
+}

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KoNeoBench · Korean Neologism Understanding</title>
+  <meta name="description" content="KoNeoBench is an expert-curated benchmark of 1,785 Korean neologisms, with four tasks for evaluating language models across form, meaning, and use.">
+  <meta name="keywords" content="KoNeoBench, Korean neologisms, lexical change, language models, benchmark, lexicography, EMNLP 2026">
+  <meta name="author" content="Soha Lee, Soojin Lee, Heesung Yang, Hyunju Song, Hyunji Lee, Jinsan An, Jeongwan Shin, Jin Hyun Park, Jun Lee, Hyeyoung Park, Kilim Nam">
+  <meta name="theme-color" content="#16745f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="KoNeoBench">
+  <meta property="og:title" content="KoNeoBench: Understanding Korean Neologisms">
+  <meta property="og:description" content="1,785 expert-curated entries. Four complementary tasks. A closer look at how language models handle recent Korean lexical change.">
+  <meta name="twitter:card" content="summary">
+  <meta name="citation_title" content="KoNeoBench: A Curated Evaluation Dataset for LLM Understanding of Korean Neologisms">
+  <meta name="citation_author" content="Lee, Soha">
+  <meta name="citation_author" content="Lee, Soojin">
+  <meta name="citation_author" content="Yang, Heesung">
+  <meta name="citation_author" content="Song, Hyunju">
+  <meta name="citation_author" content="Lee, Hyunji">
+  <meta name="citation_author" content="An, Jinsan">
+  <meta name="citation_author" content="Shin, Jeongwan">
+  <meta name="citation_author" content="Park, Jin Hyun">
+  <meta name="citation_author" content="Lee, Jun">
+  <meta name="citation_author" content="Park, Hyeyoung">
+  <meta name="citation_author" content="Nam, Kilim">
+  <meta name="citation_publication_date" content="2026/09/17">
+  <meta name="citation_arxiv_id" content="2609.19916">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2609.19916">
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/template.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <script defer src="static/js/index.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "KoNeoBench: A Curated Evaluation Dataset for LLM Understanding of Korean Neologisms",
+    "description": "An expert-curated benchmark for evaluating language models' understanding of Korean neologisms through four complementary tasks.",
+    "datePublished": "2026-09-17",
+    "identifier": "arXiv:2609.19916",
+    "url": "https://arxiv.org/abs/2609.19916",
+    "author": [
+      {"@type": "Person", "name": "Soha Lee"},
+      {"@type": "Person", "name": "Soojin Lee"},
+      {"@type": "Person", "name": "Heesung Yang"},
+      {"@type": "Person", "name": "Hyunju Song"},
+      {"@type": "Person", "name": "Hyunji Lee"},
+      {"@type": "Person", "name": "Jinsan An"},
+      {"@type": "Person", "name": "Jeongwan Shin"},
+      {"@type": "Person", "name": "Jin Hyun Park"},
+      {"@type": "Person", "name": "Jun Lee"},
+      {"@type": "Person", "name": "Hyeyoung Park"},
+      {"@type": "Person", "name": "Kilim Nam"}
+    ],
+    "inLanguage": "en",
+    "isAccessibleForFree": true
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <nav class="page-width site-nav" aria-label="Main navigation">
+      <a class="wordmark" href="#top"><span class="wordmark-symbol" aria-hidden="true">ㄱ</span>KoNeoBench</a>
+      <div class="nav-links">
+        <a href="#overview">Overview</a><a href="#dataset">Dataset</a><a href="#tasks">Tasks</a><a href="#findings">Findings</a>
+        <a class="nav-resource" href="#resources">Resources <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero publication-header" id="top" aria-labelledby="paper-title">
+      <div class="hero-body">
+        <div class="container is-max-desktop has-text-centered">
+          <p class="venue"><span class="venue-dot" aria-hidden="true"></span>Findings of EMNLP 2026</p>
+          <h1 class="title publication-title" id="paper-title"><span class="title-brand">KoNeoBench<span class="brand-period">.</span></span><span class="title-description">A Curated Evaluation Dataset for<br class="desktop-break"> LLM Understanding of Korean Neologisms</span></h1>
+          <div class="publication-authors" aria-label="Authors in paper order">
+            <span class="author-block">Soha Lee<sup>1*</sup></span>
+            <span class="author-block">Soojin Lee<sup>2*</sup></span>
+            <span class="author-block">Heesung Yang<sup>1</sup></span>
+            <span class="author-block">Hyunju Song<sup>3</sup></span>
+            <span class="author-block">Hyunji Lee<sup>1</sup></span>
+            <span class="author-block">Jinsan An<sup>4</sup></span>
+            <span class="author-block">Jeongwan Shin<sup>5</sup></span>
+            <span class="author-block">Jin Hyun Park<sup>6</sup></span>
+            <span class="author-block">Jun Lee<sup>7</sup></span>
+            <span class="author-block">Hyeyoung Park<sup>1†</sup></span>
+            <span class="author-block">Kilim Nam<sup>7†</sup></span>
+          </div>
+          <p class="institution-line">Kyungpook National University <span>·</span> DGIST <span>·</span> Texas A&amp;M University <span>·</span> Yonsei University</p>
+          <details class="affiliations">
+            <summary>Full affiliations &amp; author notes <span aria-hidden="true">⌄</span></summary>
+            <ol>
+              <li>School of Computer Science and Engineering, Kyungpook National University</li>
+              <li>International Exchange Department, Kyungpook National University</li>
+              <li>Dept. of Korean Language and Literature Education, Kyungpook National University</li>
+              <li>Dept. of Korean Language and Literature, Kyungpook National University</li>
+              <li>Daegu Gyeongbuk Institute of Science and Technology (DGIST)</li>
+              <li>Dept. of Computer Science and Engineering, Texas A&amp;M University</li>
+              <li>Dept. of Korean Language and Literature, Yonsei University</li>
+            </ol>
+            <p>* These authors contributed equally to this work.</p>
+            <p>† Corresponding authors: Kilim Nam (<a href="mailto:nki@yonsei.ac.kr">nki@yonsei.ac.kr</a>), Hyeyoung Park (<a href="mailto:hypark@knu.ac.kr">hypark@knu.ac.kr</a>).</p>
+          </details>
+          <div class="publication-links">
+            <a class="button is-dark is-rounded" href="https://arxiv.org/pdf/2609.19916" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> Read the paper</a>
+            <a class="button is-rounded button-outline" href="https://github.com/bcmilab/ko-neobench/" target="_blank" rel="noopener noreferrer">Code &amp; data <span aria-hidden="true">↗</span></a>
+            <a class="button is-rounded button-outline" href="#tasks">Explore the tasks <span aria-hidden="true">↓</span></a>
+          </div>
+          <p class="hero-note">Expert lexical knowledge meets language model evaluation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section visual-overview" id="visual-overview" aria-labelledby="visual-heading">
+      <div class="page-width overview-layout">
+        <div class="overview-intro">
+          <p class="eyebrow">The benchmark at a glance</p>
+          <h2 id="visual-heading">New words.<br>Rich lexical evidence.</h2>
+          <p class="lead">From attested news usage to expert-reviewed entries—and four ways to test what a model understands.</p>
+          <ol class="overview-steps">
+            <li><span class="step-no">01</span><div><h3>Collect &amp; verify</h3><p>News-based candidates, expert review, manual discovery, and first-occurrence checks.</p></div></li>
+            <li><span class="step-no">02</span><div><h3>Describe the word</h3><p>Definitions, usage examples, word formation, and semantic and domain information.</p></div></li>
+            <li><span class="step-no">03</span><div><h3>Probe understanding</h3><p>Contextual identification, source-word recovery, categorization, and definition generation.</p></div></li>
+          </ol>
+        </div>
+        <figure class="paper-figure figure-overview">
+          <a href="static/images/figure-2.png" data-zoom data-caption="Figure 2. Data collection process and an annotated KoNeoBench entry. Original figure from the paper." aria-label="Enlarge Figure 2: data collection process and annotated entry">
+            <img src="static/images/figure-2.webp" width="1128" height="1938" alt="Original Figure 2 showing automatic candidate extraction, expert validation and manual discovery, followed by an annotated entry for 안티알고리즘." fetchpriority="high">
+            <span class="zoom-hint">View original figure <span aria-hidden="true">↗</span></span>
+          </a>
+          <figcaption><strong>Figure 2.</strong> Collection process and an annotated entry.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="overview" aria-labelledby="overview-heading">
+      <div class="page-width section-heading">
+        <p class="eyebrow">Overview</p>
+        <h2 id="overview-heading">Language changes.<br class="mobile-break"> What do models understand?</h2>
+        <p class="section-lead">Existing Korean benchmarks mainly emphasize established vocabulary. KoNeoBench brings recent Korean lexical change into focus.</p>
+      </div>
+      <div class="page-width overview-copy">
+        <p>Understanding a neologism can require more than recognizing a familiar string. A model may need to recover shortened source words, interpret a blend, handle an attached particle, or infer meaning from actual use.</p>
+        <p>KoNeoBench pairs <strong>expert-curated lexical annotations</strong> with complementary evaluation tasks. It extends neologism evaluation to Korean while examining form, meaning, and context together.</p>
+      </div>
+      <div class="page-width stats-band" aria-label="KoNeoBench at a glance">
+        <div><strong>1,785</strong><span>expert-curated neologisms</span></div>
+        <div><strong>2020–24</strong><span>annual surveys</span></div>
+        <div><strong>4</strong><span>evaluation tasks</span></div>
+        <div><strong>9</strong><span>evaluated language models</span></div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="dataset" aria-labelledby="dataset-heading">
+      <div class="page-width section-heading">
+        <p class="eyebrow">The dataset</p>
+        <h2 id="dataset-heading">Inside a KoNeoBench entry</h2>
+        <p class="section-lead">Each entry connects a word to its meaning, usage, formation, and category information.</p>
+      </div>
+      <div class="page-width entry-layout">
+        <article class="lexical-entry" aria-labelledby="entry-headword">
+          <div class="entry-top"><span class="small-label">An example from Table 3</span><span class="entry-year">2021 survey</span></div>
+          <h3 lang="ko" id="entry-headword">오하운</h3>
+          <p class="entry-romanization">ohaun <span>·</span> abbreviation</p>
+          <div class="source-words" aria-label="Source words"><span lang="ko">오늘<small>today</small></span><b aria-hidden="true">+</b><span lang="ko">하루<small>day</small></span><b aria-hidden="true">+</b><span lang="ko">운동<small>exercise</small></span></div>
+          <dl class="entry-fields">
+            <div><dt>Definition</dt><dd>An abbreviation of “오늘 하루 운동,” referring to exercise performed as part of everyday life.</dd></div>
+            <div><dt>Usage</dt><dd lang="ko">젊은 세대 사이에는 자존감과 성취감을 높이기 위한 <mark>오하운이</mark> 중요한 키워드로 자리를 잡고 있다.</dd></div>
+            <div><dt>Category</dt><dd>Life <span class="field-divider">/</span> General vocabulary</dd></div>
+          </dl>
+          <p class="micro-note">English translations are provided for readability.</p>
+        </article>
+        <div class="dataset-context">
+          <h3>A lexical resource with expert grounding</h3>
+          <p>The collection combines automatic candidate extraction with lexicographic review and manual discovery. First occurrences are checked against news records.</p>
+          <p>Definitions and usage examples support interpretation; formation and category annotations enable distinct evaluation tasks.</p>
+          <div class="scope-note"><span class="small-label">Scope</span><p>The current release covers the 2020–2024 surveys and news-attested lexical forms. Semantic neologisms—new senses of existing words—are outside this version.</p></div>
+          <a class="text-link" href="https://github.com/bcmilab/ko-neobench/tree/main/data" target="_blank" rel="noopener noreferrer">Explore the benchmark files <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <figure class="page-width paper-figure figure-wide">
+        <a href="static/images/figure-3.png" data-zoom data-caption="Figure 3. Original dataset distributions by survey year, semantic/domain categories, and word-formation type. Values are reproduced unchanged from the paper." aria-label="Enlarge original dataset distribution figure">
+          <img src="static/images/figure-3.webp" width="2700" height="624" alt="Original Figure 3: distributions of KoNeoBench entries by survey year, semantic and specialized-domain categories, and word-formation type." loading="lazy">
+          <span class="zoom-hint">Enlarge <span aria-hidden="true">↗</span></span>
+        </a>
+        <figcaption><strong>Figure 3.</strong> Original dataset distributions from the paper. The benchmark contains 1,785 entries.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="tasks" aria-labelledby="tasks-heading">
+      <div class="page-width section-heading">
+        <p class="eyebrow">Try the benchmark</p>
+        <h2 id="tasks-heading">Four tasks. Complementary perspectives.</h2>
+        <p class="section-lead">Identify a word in context. Recover its source words. Assign its category. Explain its meaning.</p>
+      </div>
+      <div class="page-width task-grid">
+        <article class="task-card">
+          <div class="task-heading"><span class="task-number">01</span><div><p class="small-label">Accuracy</p><h3>Contextual Identification</h3></div></div>
+          <p>Select the neologism that fits a masked usage sentence from five candidates.</p>
+          <div class="task-example">
+            <p class="example-question">Which word fits this context?</p>
+            <p class="korean-prompt" lang="ko">[MASK]는 앞으로 정부의 허가를 받아 노란 번호판을 달고 영업해야 하며 일정 액수의 기여금을 내야 한다.</p>
+            <p class="translation">[MASK] must obtain government approval, operate with yellow license plates, and pay a contribution fee.</p>
+            <ol class="compact-options" type="A">
+              <li><span lang="ko">줌술족</span> <small>zoom-drinkers</small></li>
+              <li><span lang="ko">플랫폼 운수 사업자</span> <small>platform-based transport operator</small></li>
+              <li><span lang="ko">극폭</span> <small>extreme width</small></li>
+              <li><span lang="ko">역응원</span> <small>cheering for the opposing side</small></li>
+              <li><span lang="ko">플랫폼 이용 사용자</span> <small>platform user</small></li>
+            </ol>
+            <details class="answer-reveal"><summary>Reveal answer <span aria-hidden="true">+</span></summary><p><strong>B · 플랫폼 운수 사업자.</strong> The sentence concerns a transport operator. A platform user is a plausible related distractor, but is not the intended referent.</p></details>
+          </div>
+          <p class="task-setting"><strong>Two settings:</strong> mask the word alone, or mask the word and its particle together. The example above shows word-only masking.</p>
+        </article>
+
+        <article class="task-card task-featured">
+          <div class="task-heading"><span class="task-number">02</span><div><p class="small-label">Coverage · Precision · F1</p><h3>Source Word Identification</h3></div></div>
+          <p>Recover the actual source words of 396 blends and abbreviations, beyond surface syllable splitting.</p>
+          <div class="task-example source-example">
+            <p class="example-question">Which words formed this neologism?</p>
+            <p class="challenge-word" lang="ko">헬스닥</p>
+            <p class="neutral-pronunciation">hel-seu-dak</p>
+            <div class="source-comparison"><span>health + doctor</span><span class="or">or</span><span>hell + KOSDAQ</span></div>
+            <p class="micro-note">KOSDAQ is a Korean stock market. Consider both interpretations before revealing the answer.</p>
+            <details class="answer-reveal"><summary>Compare with GPT-5.4 <span aria-hidden="true">+</span></summary>
+              <p><span class="answer-label">Gold source words</span><strong lang="ko">헬 + 코스닥</strong><br>hell + KOSDAQ</p>
+              <p><span class="answer-label model-label">GPT-5.4 prediction</span><strong lang="ko">헬스 + 닥터</strong><br>health + doctor</p>
+              <p>This is an actual model error reported in Table 8. The familiar-looking analysis does not recover the attested source words.</p>
+            </details>
+          </div>
+          <p class="task-setting">The original task uses <strong>free-form recovery</strong>. The two displayed alternatives are a reading aid, not the model's input.</p>
+        </article>
+
+        <article class="task-card">
+          <div class="task-heading"><span class="task-number">03</span><div><p class="small-label">Accuracy</p><h3>Neologism Categorization</h3></div></div>
+          <p>Identify semantic categories and specialized domains through odd-one-out and direct label prediction.</p>
+          <form class="task-example" id="domain-quiz">
+            <fieldset>
+              <legend class="example-question">Four share a domain. Which one does not?</legend>
+              <div class="quiz-options">
+                <label><input type="radio" name="domain" value="A" required><span><b>A</b><span lang="ko">안티알고리즘</span><small>anti-algorithm</small></span></label>
+                <label><input type="radio" name="domain" value="B"><span><b>B</b><span lang="ko">양자비트플랫폼</span><small>quantum bit platform</small></span></label>
+                <label><input type="radio" name="domain" value="C"><span><b>C</b><span lang="ko">전관용역</span><small>ex-official service contract</small></span></label>
+                <label><input type="radio" name="domain" value="D"><span><b>D</b><span lang="ko">온디바이스폰</span><small>on-device phone</small></span></label>
+                <label><input type="radio" name="domain" value="E"><span><b>E</b><span lang="ko">온센서에이아이</span><small>on-sensor AI</small></span></label>
+              </div>
+              <div class="quiz-actions"><button type="submit" class="small-button">Check answer</button><button type="reset" class="reset-button">Reset</button></div>
+              <p id="domain-feedback" class="quiz-feedback" role="status" aria-live="polite"></p>
+            </fieldset>
+            <noscript><p>Answer: C, 전관용역 (General society). The other four share Information and communication.</p></noscript>
+          </form>
+          <p class="task-setting"><strong>16 semantic categories · 43 specialized domains.</strong> Direct classification is evaluated with and without usage examples.</p>
+        </article>
+
+        <article class="task-card">
+          <div class="task-heading"><span class="task-number">04</span><div><p class="small-label">LLM-judge score · 0–10</p><h3>Definition Generation</h3></div></div>
+          <p>Generate a concise dictionary-style definition from a term alone or from a term and its usage example.</p>
+          <div class="task-example definition-example">
+            <p class="example-question">How would you define this neologism?</p>
+            <p class="definition-word" lang="ko">애프터코로나</p>
+            <p class="neutral-pronunciation">aftercorona</p>
+            <details class="context-reveal"><summary>Add the usage example <span aria-hidden="true">+</span></summary><p lang="ko">관광업계에서 애프터코로나를 대비하기 위해 한 기업 총수가 직접 나섰다.</p><p class="translation">A company leader stepped forward to help the tourism industry prepare for “aftercorona.”</p></details>
+            <details class="answer-reveal"><summary>Read the reference definition <span aria-hidden="true">+</span></summary><p lang="ko">코로나19의 세계적 대유행이 종식된 뒤의 시기.</p><p>The period after the end of the COVID-19 global pandemic.</p></details>
+          </div>
+          <p class="task-setting">Definitions are evaluated for <strong>semantic adequacy, fluency, and factuality</strong> using an expert-designed rubric.</p>
+        </article>
+      </div>
+      <div class="page-width task-footnote">
+        <p>Examples adapted from Figure 4 and Tables 5 and 8. English translations aid reading; benchmark model prompts were in Korean. This is a sample walkthrough, not a live model evaluation.</p>
+        <details class="original-figure"><summary>See all four task examples in the paper <span aria-hidden="true">+</span></summary>
+          <figure class="paper-figure"><a href="static/images/figure-4.png" data-zoom data-caption="Figure 4. Original examples of the four evaluation tasks from the paper." aria-label="Enlarge original Figure 4"><img src="static/images/figure-4.webp" width="2736" height="996" alt="Original Figure 4 showing the four benchmark tasks, including question formats and reference answers." loading="lazy"></a><figcaption><strong>Figure 4.</strong> Original task examples, including reference answers.</figcaption></figure>
+        </details>
+      </div>
+    </section>
+
+    <section class="section section-tinted" id="findings" aria-labelledby="findings-heading">
+      <div class="page-width section-heading">
+        <p class="eyebrow">Key findings</p>
+        <h2 id="findings-heading">What the benchmark reveals</h2>
+        <p class="section-lead">Source recovery, contextual support, and human–model comparisons reveal different aspects of neologism knowledge.</p>
+      </div>
+      <div class="page-width findings-stack">
+        <article class="finding-row">
+          <div class="finding-stat"><span class="small-label">Best full-set result</span><p><strong>49.96</strong><span>F1</span></p><small>Task 2 · 396 items · 9 models</small></div>
+          <div><span class="finding-index">01 / FORMATION</span><h3>Recovering source words remains difficult.</h3><p>GPT-5.4 achieves the highest full-set score, but source-word recovery remains challenging across the evaluated models. The 헬스닥 example illustrates how a plausible analysis can miss the actual source words.</p><a class="source-ref" href="https://arxiv.org/pdf/2609.19916#page=7" target="_blank" rel="noopener noreferrer">Table 1 · Section 4.3.2 <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="finding-row">
+          <div class="finding-stat"><span class="small-label">Mean definition score</span><p class="score-change"><strong>5.93</strong><span aria-label="to">→</span><strong>7.18</strong></p><small>Task 4 · out of 10 · mean of 9 models</small></div>
+          <div><span class="finding-index">02 / CONTEXT</span><h3>Usage examples improve definition scores.</h3><p>Providing a usage example raises average LLM-judge scores by 1.25 points. In Task 4, score declines across newer survey-year groups also become less pronounced.</p><a class="source-ref" href="https://arxiv.org/pdf/2609.19916#page=8" target="_blank" rel="noopener noreferrer">Table 1 · Figure 6(b) <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <figure class="paper-figure finding-figure">
+          <div class="figure-title"><h3>Definition generation across survey years</h3><p>Term only <span aria-hidden="true">/</span> Term + usage example</p></div>
+          <a href="static/images/figure-6b.png" data-zoom data-caption="Figure 6(b). Task 4 LLM-judge scores grouped by survey year, without and with usage examples. Original plot from the paper." aria-label="Enlarge definition scores by survey year">
+            <img src="static/images/figure-6b.webp" width="1272" height="837" alt="Original Figure 6(b). Lines for nine models compare definition scores across the 2020 to 2024 survey years, without and with usage examples." loading="lazy">
+            <span class="zoom-hint">Enlarge <span aria-hidden="true">↗</span></span>
+          </a>
+          <figcaption><strong>Figure 6(b).</strong> This survey-year analysis concerns Task 4. The scores are automatic comparative measures, not percentage accuracy.</figcaption>
+        </figure>
+        <article class="finding-row human-finding">
+          <div class="finding-stat"><span class="small-label">Human comparison</span><p><strong>20</strong><span>participants</span></p><small>10 linguistics majors · 10 non-majors</small></div>
+          <div><span class="finding-index">03 / COMPLEMENTARY ABILITIES</span><h3>Relative strengths depend on the task.</h3><p>Linguistics majors outperform GPT-5.4 on source recovery. GPT-5.4 outperforms participants overall on specialized-domain odd-one-out.</p>
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Human and model comparison table"><table class="human-table"><caption>Matched 50-item subsets for each setting</caption><thead><tr><th scope="col">Setting</th><th scope="col">Human group</th><th scope="col">Human</th><th scope="col">GPT-5.4</th></tr></thead><tbody><tr><th scope="row">Source recovery · F1</th><td>Linguistics majors</td><td><strong>63.40</strong></td><td>51.01</td></tr><tr><th scope="row">Domain odd-one-out · Acc. %</th><td>All participants</td><td>75.40</td><td><strong>82.00</strong></td></tr></tbody></table></div>
+            <a class="source-ref" href="https://arxiv.org/pdf/2609.19916#page=36" target="_blank" rel="noopener noreferrer">Appendix D · Table 10 <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </div>
+      <div class="page-width"><details class="results-details"><summary>Compare the full-set results across all nine models <span aria-hidden="true">+</span></summary>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Full-set results for nine models"><table class="results-table"><caption>Selected columns from Table 1. Task 2 uses F1 on a 0–100 scale; Task 4 uses LLM-judge scores out of 10.</caption><thead><tr><th scope="col">Model</th><th scope="col">Source recovery<br>F1</th><th scope="col">Definition<br>Term only</th><th scope="col">Definition<br>With example</th></tr></thead><tbody>
+          <tr><th scope="row">GPT-4.1</th><td>43.78</td><td>7.15</td><td>8.47</td></tr>
+          <tr class="best-row"><th scope="row">GPT-5.4</th><td><strong>49.96</strong></td><td><strong>7.49</strong></td><td><strong>8.69</strong></td></tr>
+          <tr><th scope="row">Solar Pro3</th><td>32.90</td><td>6.68</td><td>7.79</td></tr>
+          <tr><th scope="row">Solar-10.7B</th><td>9.76</td><td>3.50</td><td>4.41</td></tr>
+          <tr><th scope="row">EXAONE-3.5-7.8B</th><td>24.00</td><td>6.17</td><td>7.53</td></tr>
+          <tr><th scope="row">EXAONE-4.0-32B</th><td>24.08</td><td>6.07</td><td>7.53</td></tr>
+          <tr><th scope="row">Qwen2.5-7B</th><td>18.19</td><td>5.56</td><td>6.81</td></tr>
+          <tr><th scope="row">Qwen3.5-9B</th><td>23.62</td><td>5.58</td><td>7.05</td></tr>
+          <tr><th scope="row">LLaMA-3.1-8B</th><td>15.50</td><td>5.19</td><td>6.31</td></tr>
+          <tr class="mean-row"><th scope="row">Mean</th><td>26.87</td><td>5.93</td><td>7.18</td></tr>
+        </tbody></table></div>
+        <p class="micro-note">Full-set results above and the human-comparison subsets are separate evaluations. See the paper for all task variants and the definition-scoring rubric.</p>
+      </details></div>
+    </section>
+
+    <section class="section" id="resources" aria-labelledby="resources-heading">
+      <div class="page-width resource-layout">
+        <div><p class="eyebrow">Resources</p><h2 id="resources-heading">Explore the research.</h2><p class="section-lead">Read the paper, inspect the benchmark, or run the evaluation pipeline.</p></div>
+        <div class="resource-links">
+          <a href="https://arxiv.org/abs/2609.19916" target="_blank" rel="noopener noreferrer"><span><strong>Paper on arXiv</strong><small>Methodology, experiments, and appendices</small></span><span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/bcmilab/ko-neobench/" target="_blank" rel="noopener noreferrer"><span><strong>Code &amp; benchmark data</strong><small>Task scripts, prompts, and evaluation resources</small></span><span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/bcmilab/ko-neobench/tree/main/data" target="_blank" rel="noopener noreferrer"><span><strong>Browse the data</strong><small>Task-level benchmark files</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section citation-section" id="citation" aria-labelledby="citation-heading">
+      <div class="page-width">
+        <div class="citation-heading"><div><p class="eyebrow">Citation</p><h2 id="citation-heading">Building on KoNeoBench?</h2></div><button type="button" class="small-button" data-copy-bibtex>Copy BibTeX</button></div>
+        <p class="citation-intro">Please cite the paper when using the benchmark. The entry below refers to the arXiv version.</p>
+        <pre class="bibtex"><code id="bibtex-content">@misc{lee2026koneobench,
+  title = {{KoNeoBench}: A Curated Evaluation Dataset for {LLM}
+           Understanding of Korean Neologisms},
+  author = {Lee, Soha and Lee, Soojin and Yang, Heesung and
+            Song, Hyunju and Lee, Hyunji and An, Jinsan and
+            Shin, Jeongwan and Park, Jin Hyun and Lee, Jun and
+            Park, Hyeyoung and Nam, Kilim},
+  year = {2026},
+  eprint = {2609.19916},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+  url = {https://arxiv.org/abs/2609.19916}
+}</code></pre>
+        <div class="citation-bottom"><a class="text-link" href="static/files/koneobench.bib" download>Download .bib <span aria-hidden="true">↓</span></a><span id="copy-status" role="status" aria-live="polite"></span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="page-width">
+      <div class="footer-top"><a class="wordmark" href="#top">KoNeoBench<span class="brand-period">.</span></a><p>Correspondence: <a href="mailto:nki@yonsei.ac.kr">Kilim Nam</a> <span>·</span> <a href="mailto:hypark@knu.ac.kr">Hyeyoung Park</a></p></div>
+      <p class="acknowledgments">This work was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT) (RS-2026-25487705), and by the Yonsei University Research Fund of 2026 (2026-22-0116).</p>
+      <p class="template-credit">Website adapted from the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a> by Eliahu Horwitz, based in part on <a href="https://nerfies.github.io/" target="_blank" rel="noopener noreferrer">Nerfies</a>. Template-derived website code: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Research figures are credited to the KoNeoBench paper.</p>
+    </div>
+  </footer>
+  <button class="back-top" type="button" data-back-top aria-label="Back to top" hidden>↑</button>
+  <dialog id="figure-dialog" class="figure-dialog" aria-labelledby="figure-dialog-caption">
+    <button class="dialog-close" type="button" data-close-dialog aria-label="Close enlarged figure">×</button>
+    <img id="figure-dialog-image" alt="">
+    <p id="figure-dialog-caption"></p>
+  </dialog>
+</body>
+</html>

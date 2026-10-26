@@ -223,38 +223,37 @@
           <p>Recover the actual source words of 396 blends and abbreviations, beyond surface syllable splitting.</p>
           <div class="task-example source-example">
             <p class="example-question">Which words formed this neologism?</p>
-            <p class="challenge-word" lang="ko">헬스닥</p>
-            <p class="neutral-pronunciation">hel-seu-dak</p>
-            <div class="source-comparison"><span>health + doctor</span><span class="or">or</span><span>hell + KOSDAQ</span></div>
-            <p class="micro-note">KOSDAQ is a Korean stock market. Consider both interpretations before revealing the answer.</p>
-            <details class="answer-reveal"><summary>Compare with GPT-5.4 <span aria-hidden="true">+</span></summary>
-              <p><span class="answer-label">Gold source words</span><strong lang="ko">헬 + 코스닥</strong><br>hell + KOSDAQ</p>
-              <p><span class="answer-label model-label">GPT-5.4 prediction</span><strong lang="ko">헬스 + 닥터</strong><br>health + doctor</p>
-              <p>This is an actual model error reported in Table 8. The familiar-looking analysis does not recover the attested source words.</p>
+            <p class="challenge-word" lang="ko">온택트</p>
+            <p class="neutral-pronunciation">ontact</p>
+            <div class="source-comparison" aria-label="Two source words to recover"><span>?</span><span class="or">+</span><span>?</span></div>
+            <p class="micro-note">Think of the original words, not just a split into syllables.</p>
+            <details class="answer-reveal"><summary>Reveal source words <span aria-hidden="true">+</span></summary>
+              <p><span class="answer-label">Gold source words</span><strong lang="ko">온라인 + 콘택트</strong><br>online + contact</p>
+              <p>The reference answer in Figure 4 recovers the two words used to form 온택트.</p>
             </details>
           </div>
-          <p class="task-setting">The original task uses <strong>free-form recovery</strong>. The two displayed alternatives are a reading aid, not the model's input.</p>
+          <p class="task-setting"><strong>Free-form recovery:</strong> name the source words used to form the neologism.</p>
         </article>
 
         <article class="task-card">
           <div class="task-heading"><span class="task-number">03</span><div><p class="small-label">Accuracy</p><h3>Neologism Categorization</h3></div></div>
           <p>Identify semantic categories and specialized domains through odd-one-out and direct label prediction.</p>
-          <form class="task-example" id="domain-quiz">
+          <form class="task-example" id="category-quiz">
             <fieldset>
-              <legend class="example-question">Four share a domain. Which one does not?</legend>
+              <legend class="example-question">Which word belongs to a different semantic category?</legend>
               <div class="quiz-options">
-                <label><input type="radio" name="domain" value="A" required><span><b>A</b><span lang="ko">안티알고리즘</span><small>anti-algorithm</small></span></label>
-                <label><input type="radio" name="domain" value="B"><span><b>B</b><span lang="ko">양자비트플랫폼</span><small>quantum bit platform</small></span></label>
-                <label><input type="radio" name="domain" value="C"><span><b>C</b><span lang="ko">전관용역</span><small>ex-official service contract</small></span></label>
-                <label><input type="radio" name="domain" value="D"><span><b>D</b><span lang="ko">온디바이스폰</span><small>on-device phone</small></span></label>
-                <label><input type="radio" name="domain" value="E"><span><b>E</b><span lang="ko">온센서에이아이</span><small>on-sensor AI</small></span></label>
+                <label><input type="radio" name="category" value="A" required><span><b>A</b><span lang="ko">썩파트</span><small>rotten-apartment</small></span></label>
+                <label><input type="radio" name="category" value="B"><span><b>B</b><span lang="ko">소세권</span><small>pediatrician-access area</small></span></label>
+                <label><input type="radio" name="category" value="C"><span><b>C</b><span lang="ko">안방요금</span><small>home premiere fee</small></span></label>
+                <label><input type="radio" name="category" value="D"><span><b>D</b><span lang="ko">창툭튀</span><small>bulging window AC</small></span></label>
+                <label><input type="radio" name="category" value="E"><span><b>E</b><span lang="ko">직락</span><small>workjoy zone</small></span></label>
               </div>
               <div class="quiz-actions"><button type="submit" class="small-button">Check answer</button><button type="reset" class="reset-button">Reset</button></div>
-              <p id="domain-feedback" class="quiz-feedback" role="status" aria-live="polite"></p>
+              <p id="category-feedback" class="quiz-feedback" role="status" aria-live="polite"></p>
             </fieldset>
-            <noscript><p>Answer: C, 전관용역 (General society). The other four share Information and communication.</p></noscript>
+            <noscript><p>Answer: C, 안방요금 (home premiere fee). Its semantic category is Economic life (경제 생활).</p></noscript>
           </form>
-          <p class="task-setting"><strong>16 semantic categories · 43 specialized domains.</strong> Direct classification is evaluated with and without usage examples.</p>
+          <p class="task-setting"><strong>16 semantic categories · 43 specialized domains.</strong> This example tests semantic categorization. Direct classification is evaluated with and without usage examples.</p>
         </article>
 
         <article class="task-card">
@@ -271,7 +270,7 @@
         </article>
       </div>
       <div class="page-width task-footnote">
-        <p>Examples adapted from Figure 4 and Tables 5 and 8. English translations aid reading; benchmark model prompts were in Korean. This is a sample walkthrough, not a live model evaluation.</p>
+        <p>Examples adapted from Figure 4. English translations aid reading; benchmark model prompts were in Korean. This is a sample walkthrough, not a live model evaluation.</p>
         <details class="original-figure"><summary>See all four task examples in the paper <span aria-hidden="true">+</span></summary>
           <figure class="paper-figure"><a href="static/images/figure-4.png" data-zoom data-caption="Figure 4. Original examples of the four evaluation tasks from the paper." aria-label="Enlarge original Figure 4"><img src="static/images/figure-4.webp" width="2736" height="996" alt="Original Figure 4 showing the four benchmark tasks, including question formats and reference answers." loading="lazy"></a><figcaption><strong>Figure 4.</strong> Original task examples, including reference answers.</figcaption></figure>
         </details>
@@ -287,7 +286,7 @@
       <div class="page-width findings-stack">
         <article class="finding-row">
           <div class="finding-stat"><span class="small-label">Best full-set result</span><p><strong>49.96</strong><span>F1</span></p><small>Task 2 · 396 items · 9 models</small></div>
-          <div><span class="finding-index">01 / FORMATION</span><h3>Recovering source words remains difficult.</h3><p>GPT-5.4 achieves the highest full-set score, but source-word recovery remains challenging across the evaluated models. The 헬스닥 example illustrates how a plausible analysis can miss the actual source words.</p><a class="source-ref" href="https://arxiv.org/pdf/2609.19916#page=7" target="_blank" rel="noopener noreferrer">Table 1 · Section 4.3.2 <span aria-hidden="true">↗</span></a></div>
+          <div><span class="finding-index">01 / FORMATION</span><h3>Recovering source words remains difficult.</h3><p>GPT-5.4 achieves the highest full-set score, but source-word recovery remains challenging across the evaluated models. Recovering the original lexical components requires more than splitting a word into syllables.</p><a class="source-ref" href="https://arxiv.org/pdf/2609.19916#page=7" target="_blank" rel="noopener noreferrer">Table 1 · Section 4.3.2 <span aria-hidden="true">↗</span></a></div>
         </article>
         <article class="finding-row">
           <div class="finding-stat"><span class="small-label">Mean definition score</span><p class="score-change"><strong>5.93</strong><span aria-label="to">→</span><strong>7.18</strong></p><small>Task 4 · out of 10 · mean of 9 models</small></div>

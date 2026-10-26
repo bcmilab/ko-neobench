@@ -4,7 +4,7 @@
   function initialize() {
     initializeCitationCopy();
     initializeFigureDialog();
-    initializeDomainQuiz();
+    initializeCategoryQuiz();
     initializeBackToTop();
   }
 
@@ -169,9 +169,9 @@
     });
   }
 
-  function initializeDomainQuiz() {
-    const form = document.getElementById('domain-quiz');
-    const feedback = document.getElementById('domain-feedback');
+  function initializeCategoryQuiz() {
+    const form = document.getElementById('category-quiz');
+    const feedback = document.getElementById('category-feedback');
     if (!form || !feedback) return;
 
     feedback.setAttribute('role', 'status');
@@ -186,11 +186,11 @@
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const selected = form.querySelector('input[name="domain"]:checked');
+      const selected = form.querySelector('input[name="category"]:checked');
       if (!selected) {
         clearFeedback();
         feedback.textContent = 'Choose one option, then check your answer.';
-        form.querySelector('input[name="domain"]')?.focus();
+        form.querySelector('input[name="category"]')?.focus();
         return;
       }
 
@@ -198,12 +198,12 @@
       form.dataset.result = String(correct);
       feedback.dataset.result = String(correct);
       feedback.textContent = correct
-        ? 'Correct — C (전관용역) belongs to General society. The other four terms belong to Information and communication.'
-        : 'Not quite. The answer is C (전관용역), which belongs to General society. The other four terms belong to Information and communication. You can choose again and retry.';
+        ? 'Correct — C (안방요금, home premiere fee) is the odd one out. Its semantic category is Economic life (경제 생활).'
+        : 'Not quite. The answer is C (안방요금, home premiere fee). Its semantic category is Economic life (경제 생활). You can choose again and retry.';
     });
 
     form.addEventListener('change', (event) => {
-      if (event.target.matches('input[name="domain"]')) clearFeedback();
+      if (event.target.matches('input[name="category"]')) clearFeedback();
     });
 
     form.addEventListener('reset', () => {
